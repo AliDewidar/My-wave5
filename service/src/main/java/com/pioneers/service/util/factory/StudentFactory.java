@@ -1,5 +1,6 @@
 package com.pioneers.service.util.factory;
 
+import com.pioneers.service.model.dto.SignupDto;
 import com.pioneers.service.model.dto.StudentDto;
 import com.pioneers.service.model.entity.Student;
 
@@ -18,6 +19,10 @@ public final class StudentFactory {
     public static Student toStudent(StudentDto studentDto) {
         String id = createRandomId();
         return new Student(id, studentDto.getName(), studentDto.getAge(), studentDto.getEmail(), studentDto.getGender(), studentDto.getPassword());
+    }
+
+    public static Student toStudent(String id,SignupDto signupDto,boolean isloggedIn) {
+        return new Student(id, signupDto.getName(), signupDto.getAge(), signupDto.getEmail(), signupDto.getGender(), signupDto.getPassword());
     }
 
     public static Student updateStudent(StudentDto newStudentDto, Student foundStudent) {

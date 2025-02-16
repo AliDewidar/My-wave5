@@ -7,8 +7,6 @@ import com.pioneers.service.model.dto.StudentDto;
 import com.pioneers.service.model.entity.Student;
 import com.pioneers.service.util.factory.StudentFactory;
 import lombok.extern.slf4j.Slf4j;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -99,7 +97,7 @@ public class StudentServiceImpl implements StudentService {
             throw new IllegalArgumentException("Student ID already exists");
         }
 
-        Student student = new Student(
+        /*Student student = new Student(
                 studentId,
                 signupDto.getName(),
                 signupDto.getAge(),
@@ -107,7 +105,10 @@ public class StudentServiceImpl implements StudentService {
                 signupDto.getGender(),
                 signupDto.getPassword(),
                 false
-        );
+        );*/
+
+        Student student = toStudent(studentId,signupDto,false);
+        
         studentRepository.upsert(student);
         return "Signup successful for ID: " + student.getId();
     }
