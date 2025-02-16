@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.vodafone</groupId>
+    <artifactId>esim</artifactId>
+    <version>1.2-SNAPSHOT</version>
+
+    <packaging>jar</packaging> <!--By defult packing is jar -->
+    <name>esim2</name> <!--change project name to esim2 -->
+    <description>this project is responsible for maven explanation</description>
+
+    <properties>
+        <maven.compiler.source>21</maven.compiler.source>
+        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <developers>
+        <developer>
+            <id>0001</id>
+            <name>Ali Dewidar</name>
+            <email>alidewidar23718@gmail.com</email>
+            <organization>Tech Pioneers Hub</organization>
+            <roles>
+                <role>Java Developer</role>
+                <!--you can add many roles-->
+            </roles>
+        </developer>
+        <!--you can add many developers-->
+    </developers>
+
+    <dependencies>
+
+        <dependency> <!-- this dependence will shows in jar file(not here in this project but in the project that had this dependency) -->
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>3.12.0</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency> <!-- this dependence will shows in jar file (not here in this project but in the project that had this dependency) -->
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.33</version>
+            <scope>runtime</scope>
+        </dependency>
+
+        <dependency> <!-- this dependence won't shown in jar file (not here in this project but in the project that had this dependency) -->
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13.2</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency> <!-- this dependence won't shown in jar file (not here in this project but in the project that had this dependency) -->
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>4.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+    </dependencies>
+</project>
