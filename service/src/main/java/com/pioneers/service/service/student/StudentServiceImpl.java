@@ -13,8 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.pioneers.service.util.StudentValidation.isAgeMatched;
-import static com.pioneers.service.util.StudentValidation.isMale;
+import static com.pioneers.service.util.ValidationClass.*;
 import static com.pioneers.service.util.factory.StudentFactory.*;
 
 @Slf4j
@@ -118,9 +117,7 @@ public class StudentServiceImpl implements StudentService {
         Student student = studentRepository.findById(loginDto.getId());
         validateStudentExists(student);
 
-        if (!student.getPassword().equals(loginDto.getPassword())) {
-            throw new IllegalArgumentException("Invalid credentials");
-        }
+        checkPassword(loginDto.getPassword(), student.getPassword());
 
         student.setLoggedIn(true);
         studentRepository.upsert(student);
@@ -130,6 +127,7 @@ public class StudentServiceImpl implements StudentService {
     @Override
     public String logout(String studentId) {
         Student student = studentRepository.findById(studentId);
+        
         validateStudentExists(student);
 
         student.setLoggedIn(false);
@@ -137,9 +135,4 @@ public class StudentServiceImpl implements StudentService {
         return "Logout successful for ID: " + studentId;
     }
 
-    private void validateStudentExists(Student student) {
-        if (student == null) {
-            throw new IllegalArgumentException("Student not found");
-        }
-    }
 }
