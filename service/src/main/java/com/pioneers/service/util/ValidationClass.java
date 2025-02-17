@@ -16,15 +16,11 @@ public final class ValidationClass {
         return age >= 18 && age <= 25;
     }
 
-    public static void checkPassword(String defult, String target) {
-        if(!target.equals(defult)) {
-            throw new IllegalArgumentException("Invalid password");
-        }
+    public static boolean isPasswordMatched(String sourcePassword, String targetPassword) {
+        return targetPassword.equals(sourcePassword);
     }
 
-    public static void validateStudentExists(Student student) {
-        if (student == null) {
-            throw new IllegalArgumentException("Student not found");
-        }
+    public static boolean isEmailMatched(String sourceEmail, String targetEmail) {
+        return targetEmail.equals(sourceEmail);
     }
 }

@@ -2,10 +2,12 @@ package com.pioneers.service.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
 @AllArgsConstructor
-public class LoginDto {
-    private String email;
+@NoArgsConstructor
+public class StudentLoginDto {
+    private String userName;
     private String password;
 }

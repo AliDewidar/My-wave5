@@ -17,5 +17,5 @@ public interface StudentRepository {
 
     Student findFirst();
 
-    Optional<Student> findByEmail(String email);
+    Optional<Student> findByUserName(String userName);
 }

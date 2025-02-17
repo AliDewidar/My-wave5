@@ -21,8 +21,9 @@ public final class StudentFactory {
         return new Student(id, studentDto.getName(), studentDto.getAge(), studentDto.getEmail(), studentDto.getGender(), studentDto.getPassword());
     }
 
-    public static Student toStudent(String id,SignupDto signupDto,boolean isloggedIn) {
-        return new Student(id, signupDto.getName(), signupDto.getAge(), signupDto.getEmail(), signupDto.getGender(), signupDto.getPassword());
+    public static Student toStudent(SignupDto signupDto,boolean isloggedIn) {
+        String id = createRandomId();
+        return new Student(id,signupDto.getName(), signupDto.getAge(), signupDto.getEmail(), signupDto.getGender(), signupDto.getPassword());
     }
 
     public static Student updateStudent(StudentDto newStudentDto, Student foundStudent) {

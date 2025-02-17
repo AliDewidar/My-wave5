@@ -1,13 +1,15 @@
 package com.pioneers.service.service.student;
 
-import com.pioneers.service.model.dto.LoginDto;
-import com.pioneers.service.model.dto.SignupDto;
 import com.pioneers.service.model.dto.StudentDto;
+import com.pioneers.service.model.dto.StudentLoginDto;
+import com.pioneers.service.model.dto.StudentSignupDto;
 import com.pioneers.service.model.entity.Student;
 
 import java.util.List;
 
 public interface StudentService {
+
+    //void save(StudentSignupDto studentDto);
 
     void save(StudentDto studentDto);
 
@@ -15,16 +17,16 @@ public interface StudentService {
 
     StudentDto findById(String id);
 
-    Student update(String id, StudentDto newStudentDto);
+    Student update(String id, StudentSignupDto newStudentDto);
 
     void removeById(String id);
 
     StudentDto findFirst();
 
-    void signup(SignupDto signupDto);
 
-    void login(LoginDto loginDto);
+    void signup(StudentSignupDto studentDto);
 
-    void logout(String studentId);
+    String login(StudentLoginDto studentLoginDto);
 
+    String logout(String userName);
 }

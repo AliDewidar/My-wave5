@@ -47,11 +47,8 @@ public class StudentRepositoryImpl implements StudentRepository {
         String firstId = students.keySet().stream().findFirst().orElse("");
         return students.get(firstId);
     }
-
     @Override
-    public Optional<Student> findByEmail(String email) {
-        return students.values().stream()
-                .filter(student -> student.getEmail().equals(email))
-                .findFirst();
-    }
+     public Optional<Student> findByUserName(String userName) {
+        return Optional.ofNullable(students.get(userName));
+     }
 }
