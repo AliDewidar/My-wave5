@@ -1,4 +1,4 @@
-package com.pioneers.service.util.factory.builder;
+package com.pioneers.service.util.pattern.builder;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

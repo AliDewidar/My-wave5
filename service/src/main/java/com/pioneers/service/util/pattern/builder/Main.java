@@ -1,4 +1,4 @@
-package com.pioneers.service.util.factory.builder;
+package com.pioneers.service.util.pattern.builder;
 
 public class Main {
     public static void main(String[] args) {
