@@ -11,6 +11,30 @@ public class PaymentController {
     @Autowired
     private PaymentFactory paymentFactory;
 
+
+    /*
+        ((without factory design pattern))
+        1- code duplication
+        2- hard-coded
+        3- code and implementation are tightly coupled and in the same class
+
+        @GetMapping("/process")
+        public void getPayment(@RequestParam String type , @RequestParam double amount) {
+            if (type.equalsIgnoreCase("credit card")) {
+                CreditCard creditCard = new CreditCard();
+                creditCard.processPayment(amount);
+            } else if (type.equalsIgnoreCase("paypal")) {
+                PayPal payPal = new PayPal();
+                payPal.processPayment(amount);
+            } else if (type.equalsIgnoreCase("bitcoin")) {
+                Bitcoin bitcoin = new Bitcoin();
+                bitcoin.processPayment(amount);
+            } else {
+                throw new IllegalArgumentException("Invalid payment type: " + type);
+            }
+        }
+    */
+
     public void getPayment(@RequestParam String type , @RequestParam double amount) {
         paymentFactory.getPayment(type).processPayment(amount);
     }
