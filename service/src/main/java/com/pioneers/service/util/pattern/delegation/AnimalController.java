@@ -32,7 +32,7 @@ public class AnimalController {
         birdDelegator.fly();
     }
 
-    @GetMapping("printAllAnimalInfoWithDelegator")
+    @GetMapping("printAllAnimalsInfoWithDelegator")
     public void printAllAnimalsInfoWithDelegatorApi() {
         /*animalDelegator.eat();
         System.out.println();
