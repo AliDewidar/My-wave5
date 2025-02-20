@@ -1,4 +1,4 @@
-package com.pioneers.service.util.pattern.delegation;
+package com.pioneers.service.util.pattern.factory.AnimalEx;
 
 public class AnimalFactory {
 
