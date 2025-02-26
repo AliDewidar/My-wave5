@@ -8,13 +8,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/animal")
-public class AnimalController {
+public class AnimalDelegationController {
 
     private final BirdDelegator birdDelegator;
     private final AnimalDelegator animalDelegator;
 
     @Autowired
-    public AnimalController(BirdDelegator birdDelegator, AnimalDelegator animalDelegator) {
+    public AnimalDelegationController(BirdDelegator birdDelegator, AnimalDelegator animalDelegator) {
         this.birdDelegator = birdDelegator;
         this.animalDelegator = animalDelegator;
     }
