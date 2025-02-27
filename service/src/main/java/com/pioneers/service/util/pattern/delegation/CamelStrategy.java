@@ -1,9 +1,11 @@
 package com.pioneers.service.util.pattern.delegation;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-@Component("lion")
-public class LionStrategy implements Animal {
+@Slf4j
+@Component("camel")
+public class CamelStrategy implements Animal {
     @Override
     public boolean isBird() {
         return false;
@@ -11,21 +13,21 @@ public class LionStrategy implements Animal {
 
     @Override
     public void eat() {
-        System.out.println("Lion is eating");
+        log.info("Feeding camel...");
     }
 
     @Override
     public void drink() {
-        System.out.println("Lion is drinking");
+        log.info("Drinking camel...");
     }
 
     @Override
     public void makeSound() {
-        System.out.println("roarrrrr");
+        log.info("Camel is making sound...");
     }
 
     @Override
     public void make2e2h() {
-        System.out.println("2eeeeh");
+        log.info("Dodo y 2amar y abo tota 3ryana, 3'teha y 2amar de 3leha debana, 3'teha w 25te4i da lonha me4me4i...");
     }
 }

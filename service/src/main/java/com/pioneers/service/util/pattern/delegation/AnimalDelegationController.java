@@ -7,16 +7,21 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/animal")
+@RequestMapping("/animalDelegation")
 public class AnimalDelegationController {
 
     private final BirdDelegator birdDelegator;
     private final AnimalDelegator animalDelegator;
+    private final AnimalDelegator1 animalDelegator1;
 
     @Autowired
-    public AnimalDelegationController(BirdDelegator birdDelegator, AnimalDelegator animalDelegator) {
+    public AnimalDelegationController(
+            BirdDelegator birdDelegator,
+            AnimalDelegator animalDelegator,
+            AnimalDelegator1 animalDelegator1) {
         this.birdDelegator = birdDelegator;
         this.animalDelegator = animalDelegator;
+        this.animalDelegator1 = animalDelegator1;
     }
 
     @GetMapping("printAllBirdsInfoWithDelegator")
@@ -73,5 +78,10 @@ public class AnimalDelegationController {
                 break;
         }*/
         animalDelegator.performActionsForAnimal(animal);
+    }
+
+    @GetMapping("feedParticularAnimal")
+    public void feedAnimalApi(@RequestParam(name = "animal") String animalStrategy) {
+        animalDelegator1.feedAnimal(animalStrategy.toLowerCase());
     }
 }

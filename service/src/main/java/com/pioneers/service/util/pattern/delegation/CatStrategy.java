@@ -3,8 +3,8 @@ package com.pioneers.service.util.pattern.delegation;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-@Lazy
-@Component
+
+@Component("cat")
 public class CatStrategy implements Animal {
     @Override
     public boolean isBird() {

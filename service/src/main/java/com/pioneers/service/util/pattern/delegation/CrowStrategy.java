@@ -2,7 +2,7 @@ package com.pioneers.service.util.pattern.delegation;
 
 import org.springframework.stereotype.Component;
 
-@Component
+@Component("crow")
 public class CrowStrategy implements Bird {
     @Override
     public boolean isBird() {
