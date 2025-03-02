@@ -25,7 +25,7 @@
         <module>MySecondTaskE4</module>
         <module>MySecondTaskE4-task5</module>
         <module>service</module>
-        <module>serviceAuth</module>
+        <module>errorhandling</module>
     </modules>
 
     <properties>

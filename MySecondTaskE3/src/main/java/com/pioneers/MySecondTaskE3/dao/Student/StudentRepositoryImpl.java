@@ -1,13 +1,15 @@
 package com.pioneers.MySecondTaskE3.dao.Student;
 
-import com.pioneers.task.task_edition_two.model.dto.StudentDto;
-import com.pioneers.task.task_edition_two.model.entity.Student;
-import com.pioneers.task.task_edition_two.util.factory.StudentFactory;
+
+import com.pioneers.MySecondTaskE3.model.dto.StudentDto;
+import com.pioneers.MySecondTaskE3.model.entity.Student;
+import com.pioneers.MySecondTaskE3.util.factory.StudentFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.*;
 
-import static com.pioneers.task.task_edition_two.util.factory.StudentFactory.toStudentDto;
+import static com.pioneers.MySecondTaskE3.util.factory.StudentFactory.toStudentDto;
+
 
 @Component
 public class StudentRepositoryImpl implements StudentRepository {

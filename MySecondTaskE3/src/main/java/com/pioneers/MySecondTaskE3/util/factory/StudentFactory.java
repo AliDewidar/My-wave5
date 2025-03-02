@@ -1,7 +1,8 @@
 package com.pioneers.MySecondTaskE3.util.factory;
 
-import com.pioneers.task.task_edition_two.model.dto.StudentDto;
-import com.pioneers.task.task_edition_two.model.entity.Student;
+
+import com.pioneers.MySecondTaskE3.model.dto.StudentDto;
+import com.pioneers.MySecondTaskE3.model.entity.Student;
 
 public class StudentFactory {
      public static StudentDto toStudentDto(Student student){

@@ -1,8 +1,8 @@
 package com.pioneers.MySecondTaskE3.controller;
 
 
-import com.pioneers.task.task_edition_two.dao.Student.StudentRepository;
-import com.pioneers.task.task_edition_two.model.dto.StudentDto;
+import com.pioneers.MySecondTaskE3.dao.Student.StudentRepository;
+import com.pioneers.MySecondTaskE3.model.dto.StudentDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;

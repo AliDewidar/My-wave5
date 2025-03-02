@@ -1,7 +1,8 @@
 package com.pioneers.MySecondTaskE3.dao.Student;
 
-import com.pioneers.task.task_edition_two.model.dto.StudentDto;
-import com.pioneers.task.task_edition_two.model.entity.Student;
+
+import com.pioneers.MySecondTaskE3.model.dto.StudentDto;
+import com.pioneers.MySecondTaskE3.model.entity.Student;
 import org.springframework.stereotype.Component;
 
 import java.util.*;

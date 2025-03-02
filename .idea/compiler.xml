@@ -9,9 +9,9 @@
         <outputRelativeToContentRoot value="true" />
         <module name="spring" />
         <module name="service" />
+        <module name="errorhandling" />
         <module name="MySecondTask" />
         <module name="MySecondTaskE4" />
-        <module name="serviceAuth" />
         <module name="datastructures" />
         <module name="MySecondTaskE3" />
         <module name="MySecondTaskE4 (1)" />
@@ -19,6 +19,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="mytask" target="21" />
+      <module name="serviceAuth" target="21" />
       <module name="taskTwo" target="21" />
     </bytecodeTargetLevel>
   </component>
@@ -29,6 +30,7 @@
       <module name="MySecondTaskE4" options="-parameters" />
       <module name="MySecondTaskE4 (1)" options="-parameters" />
       <module name="datastructures" options="-parameters" />
+      <module name="errorhandling" options="-parameters" />
       <module name="mytask" options="-parameters" />
       <module name="service" options="-parameters" />
       <module name="serviceAuth" options="-parameters" />

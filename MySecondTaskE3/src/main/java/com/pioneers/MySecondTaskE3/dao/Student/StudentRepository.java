@@ -1,6 +1,7 @@
 package com.pioneers.MySecondTaskE3.dao.Student;
 
-import com.pioneers.task.task_edition_two.model.dto.StudentDto;
+
+import com.pioneers.MySecondTaskE3.model.dto.StudentDto;
 
 import java.util.List;
 
