@@ -1,10 +1,11 @@
-package com.pioneers.service.util.factory;
+package com.pioneers.errorhandling.util.factory;
 
-import com.pioneers.service.model.dto.SignupDto;
-import com.pioneers.service.model.dto.StudentDto;
-import com.pioneers.service.model.entity.Student;
+import com.pioneers.errorhandling.model.dto.SignupDto;
+import com.pioneers.errorhandling.model.dto.StudentDto;
+import com.pioneers.errorhandling.model.entity.Student;
 
-import java.util.UUID;
+import static com.pioneers.errorhandling.util.Utils.createRandomId;
+import static com.pioneers.errorhandling.util.factory.NamingUtils.*;
 
 public final class StudentFactory {
 
@@ -18,13 +19,15 @@ public final class StudentFactory {
 
         //with builder
         return StudentDto.builder()
-                .name(student.getName())
+                .firstName(extractFirstName(student.getFullName()))
+                .secondName(extractSecondName(student.getFullName()))
                 .age(student.getAge())
                 .email(student.getEmail())
                 .gender(student.getGender())
                 .password(student.getPassword())
                 .build();
     }
+
 
     public static Student toStudent(StudentDto studentDto) {
         String id = createRandomId();
@@ -33,7 +36,7 @@ public final class StudentFactory {
 
         return Student.builder()
                 .id(id)
-                .name(studentDto.getName())
+                .fullName(buildFullName(studentDto.getFirstName(), studentDto.getSecondName()))
                 .age(studentDto.getAge())
                 .email(studentDto.getEmail())
                 .gender(studentDto.getGender())
@@ -41,14 +44,14 @@ public final class StudentFactory {
                 .build();
     }
 
-    public static Student toStudent(SignupDto signupDto,boolean isloggedIn) {
-        String id = createRandomId();
+    public static Student toStudent(SignupDto signupDto, boolean isloggedIn) {
+//        String id = createRandomId();
 
 //        return new Student(id, signupDto.getName(), signupDto.getAge(), signupDto.getEmail(), signupDto.getGender(), signupDto.getPassword());
 
         return Student.builder()
-                .id(id)
-                .name(signupDto.getName())
+                .id(createRandomId())
+                .fullName(signupDto.getName())
                 .age(signupDto.getAge())
                 .email(signupDto.getEmail())
                 .gender(signupDto.getGender())
@@ -63,15 +66,11 @@ public final class StudentFactory {
 
         return Student.builder()
                 .id(foundStudent.getId())
-                .name(newStudentDto.getName())
+                .fullName(buildFullName(newStudentDto.getFirstName(), newStudentDto.getSecondName()))
                 .age(newStudentDto.getAge())
                 .email(newStudentDto.getEmail())
                 .gender(newStudentDto.getGender())
                 .password(newStudentDto.getPassword())
                 .build();
-    }
-
-    public static String createRandomId() {
-        return UUID.randomUUID().toString();
     }
 }

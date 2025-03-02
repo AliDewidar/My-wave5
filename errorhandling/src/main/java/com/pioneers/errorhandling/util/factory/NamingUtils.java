@@ -1,10 +1,7 @@
 package com.pioneers.errorhandling.util.factory;
 
-import com.pioneers.errorhandling.model.dto.StudentDto;
-import com.pioneers.errorhandling.model.entity.Student;
-
-public final class NamingFactory {
-    private NamingFactory() {
+public final class NamingUtils {
+    private NamingUtils() {
         throw new IllegalStateException("Utility class");
     }
 
@@ -14,5 +11,13 @@ public final class NamingFactory {
 
     public static String extractFirstName(String fullName) {
         return fullName.split(" ")[0];
+    }
+
+    public static String extractSecondName(String fullName) {
+        return fullName.split(" ")[1];
+    }
+
+    public static boolean isNameMatched(String originalName, String targetName) {
+        return originalName.equalsIgnoreCase(targetName);
     }
 }

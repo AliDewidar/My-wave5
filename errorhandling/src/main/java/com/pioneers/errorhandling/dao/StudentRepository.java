@@ -1,8 +1,9 @@
-package com.pioneers.service.dao.student;
+package com.pioneers.errorhandling.dao;
 
-import com.pioneers.service.model.entity.Student;
+import com.pioneers.errorhandling.model.entity.Student;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 public interface StudentRepository {
@@ -18,4 +19,6 @@ public interface StudentRepository {
     Student findFirst();
 
     Optional<Student> findByEmail(String email);
+
+    List<Student> findAllByFirstName(String firstName);
 }

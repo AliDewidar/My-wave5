@@ -1,9 +1,10 @@
-package com.pioneers.service.service.student;
+package com.pioneers.errorhandling.service;
 
-import com.pioneers.service.model.dto.LoginDto;
-import com.pioneers.service.model.dto.SignupDto;
-import com.pioneers.service.model.dto.StudentDto;
-import com.pioneers.service.model.entity.Student;
+
+import com.pioneers.errorhandling.model.dto.LoginDto;
+import com.pioneers.errorhandling.model.dto.SignupDto;
+import com.pioneers.errorhandling.model.dto.StudentDto;
+import com.pioneers.errorhandling.model.entity.Student;
 
 import java.util.List;
 
@@ -27,4 +28,5 @@ public interface StudentService {
 
     void logout(String studentId);
 
+    List<StudentDto> findAllByFirstName(String firstName);
 }

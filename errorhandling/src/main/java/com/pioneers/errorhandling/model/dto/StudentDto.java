@@ -1,16 +1,15 @@
-package com.pioneers.service.model.dto;
+package com.pioneers.errorhandling.model.dto;
 
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 
-@Builder
-@AllArgsConstructor
 @Data
+@Builder
 public class StudentDto {
-    private String name;
+    private String firstName;
+    private String secondName;
     private int age;
-    private String email;
     private String gender;
+    private String email;
     private String password;
 }

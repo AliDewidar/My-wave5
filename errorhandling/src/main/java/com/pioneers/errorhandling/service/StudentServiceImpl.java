@@ -1,11 +1,12 @@
-package com.pioneers.service.service.student;
+package com.pioneers.errorhandling.service;
 
-import com.pioneers.service.dao.student.StudentRepository;
-import com.pioneers.service.model.dto.LoginDto;
-import com.pioneers.service.model.dto.SignupDto;
-import com.pioneers.service.model.dto.StudentDto;
-import com.pioneers.service.model.entity.Student;
-import com.pioneers.service.util.factory.StudentFactory;
+import com.pioneers.errorhandling.dao.StudentRepository;
+import com.pioneers.errorhandling.model.dto.LoginDto;
+import com.pioneers.errorhandling.model.dto.SignupDto;
+import com.pioneers.errorhandling.model.dto.StudentDto;
+import com.pioneers.errorhandling.model.entity.Student;
+import com.pioneers.errorhandling.util.factory.StudentFactory;
+
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -13,8 +14,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-import static com.pioneers.service.util.ValidationClass.*;
-import static com.pioneers.service.util.factory.StudentFactory.*;
+import static com.pioneers.errorhandling.util.ValidationClass.*;
+import static com.pioneers.errorhandling.util.factory.NamingUtils.buildFullName;
+import static com.pioneers.errorhandling.util.factory.StudentFactory.*;
 
 @Slf4j
 @Primary
@@ -37,7 +39,8 @@ public class StudentServiceImpl implements StudentService {
 
             studentRepository.upsert(student);
 
-            log.debug("Student saved into the db with id: [{}] and name: [{}]", student.getId(), studentDto.getName());
+            log.debug("Student saved into the db with id: [{}] and FullName: [{}]", student.getId(),
+                    buildFullName(studentDto.getFirstName(), studentDto.getSecondName()));
         }
     }
 
@@ -55,14 +58,14 @@ public class StudentServiceImpl implements StudentService {
 
         StudentDto studentDto = toStudentDto(foundStudent);
 
-        log.debug("Student found in the db with id: [{}] and name: [{}]", id, studentDto.getName());
-
+        log.debug("Student found in the db with id: [{}] and FullName: [{}]", id,
+                buildFullName(studentDto.getFirstName(), studentDto.getSecondName()));
         return studentDto;
     }
 
     @Override
     public Student update(final String id, final StudentDto newStudentDto) {
-        String oldStudentName = studentRepository.findById(id).getName();
+        String oldStudentName = studentRepository.findById(id).getFullName();
 
         Student foundStudent = studentRepository.findById(id);
         foundStudent = updateStudent(newStudentDto, foundStudent);
@@ -70,7 +73,7 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.upsert(foundStudent);
 
         log.debug("Student updated in the db with id: [{}], old name: [{}] and new name: [{}]",
-                id, oldStudentName, newStudentDto.getName());
+                id, oldStudentName, buildFullName(newStudentDto.getFirstName(), newStudentDto.getSecondName()));
         return foundStudent;
     }
 
@@ -85,8 +88,8 @@ public class StudentServiceImpl implements StudentService {
         Student firstStudent = studentRepository.findFirst();
         StudentDto studentDto = toStudentDto(firstStudent);
 
-        log.debug("Student found in the db with id: [{}] and name: [{}]", firstStudent.getId(), studentDto.getName());
-
+        log.debug("Student found in the db with id: [{}] and name: [{}]", firstStudent.getId(),
+                buildFullName(studentDto.getFirstName(), studentDto.getSecondName()));
         return studentDto;
     }
 
@@ -132,6 +135,15 @@ public class StudentServiceImpl implements StudentService {
                     studentRepository.upsert(student);
                     log.debug("Student logged out successfully");
                 });
+    }
+
+    @Override
+    public List<StudentDto> findAllByFirstName(String firstName) {
+        List<Student> filteredStudent = studentRepository.findAllByFirstName(firstName);
+
+        return filteredStudent.stream()
+                .map(StudentFactory::toStudentDto)
+                .toList();
     }
 
 }

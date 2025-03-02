@@ -1,14 +1,14 @@
-package com.pioneers.service.dao.student;
+package com.pioneers.errorhandling.dao;
 
-import com.pioneers.service.model.entity.Student;
+import com.pioneers.errorhandling.model.entity.Student;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
+
+import static com.pioneers.errorhandling.util.factory.NamingUtils.extractFirstName;
+import static com.pioneers.errorhandling.util.factory.NamingUtils.isNameMatched;
 
 @Slf4j
 @Primary
@@ -54,4 +54,14 @@ public class StudentRepositoryImpl implements StudentRepository {
                 .filter(student -> student.getEmail().equals(email))
                 .findFirst();
     }
+
+    @Override
+    public List<Student> findAllByFirstName(String firstName) {
+        return students.values().stream()
+//                .filter(student -> extractFirstName(student.getFullName()).equalsIgnoreCase(firstName))
+                .filter(student -> isNameMatched(extractFirstName(student.getFullName()),firstName))
+                .toList();
+    }
+
+
 }

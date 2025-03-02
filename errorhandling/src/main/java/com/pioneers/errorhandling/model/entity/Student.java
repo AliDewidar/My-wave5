@@ -1,4 +1,4 @@
-package com.pioneers.service.model.entity;
+package com.pioneers.errorhandling.model.entity;
 
 import lombok.*;
 
@@ -8,7 +8,7 @@ import lombok.*;
 @AllArgsConstructor
 public class Student {
     @NonNull private String id;
-    @NonNull private String name;
+    @NonNull private String fullName;
     @NonNull private int age;
     @NonNull private String email;
     @NonNull private String gender;

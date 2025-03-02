@@ -1,20 +1,17 @@
-package com.pioneers.service.controller;
+package com.pioneers.errorhandling.controller;
 
-import com.pioneers.service.model.dto.LoginDto;
-import com.pioneers.service.model.dto.LogoutDto;
-import com.pioneers.service.model.dto.SignupDto;
-import com.pioneers.service.model.dto.StudentDto;
-import com.pioneers.service.model.entity.Student;
-import com.pioneers.service.service.student.StudentService;
+import com.pioneers.errorhandling.model.dto.LoginDto;
+import com.pioneers.errorhandling.model.dto.LogoutDto;
+import com.pioneers.errorhandling.model.dto.SignupDto;
+import com.pioneers.errorhandling.model.dto.StudentDto;
+import com.pioneers.errorhandling.model.entity.Student;
+import com.pioneers.errorhandling.service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// TODO: Create Three APIs to implements signup, login, logout for student.
-//  the logged-in student can hit all APIs except save API. When he log-out, he can hit non of the below APIs.
-//  Consider the SOLID principles and clean architecture that we explained.
 @Slf4j
 @RestController
 @RequestMapping("/student")
@@ -73,5 +70,10 @@ public class StudentController {
     @PostMapping("/logout")
     public void logout(@RequestBody LogoutDto logoutDto) {
         studentService.logout(logoutDto.getStudentId());
+    }
+
+    @GetMapping("findAllFirstName")
+    public List<StudentDto> getFirstNameApi(@RequestParam(name = "firstname") String firstName) {
+        return studentService.findAllByFirstName(firstName);
     }
 }

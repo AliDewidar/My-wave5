@@ -1,6 +1,4 @@
-package com.pioneers.service.util;
-
-import com.pioneers.service.model.entity.Student;
+package com.pioneers.errorhandling.util;
 
 public final class ValidationClass {
 
