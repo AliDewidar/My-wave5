@@ -14,4 +14,6 @@ public class Student {
     @NonNull private String gender;
     @NonNull private String password;
     private boolean isLoggedIn;
+    private String phone;
+    private String enrollmentDate;
 }

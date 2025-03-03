@@ -25,6 +25,8 @@ public final class StudentFactory {
                 .email(student.getEmail())
                 .gender(student.getGender())
                 .password(student.getPassword())
+                .phone(student.getPhone())
+                .enrollmentDate(student.getEnrollmentDate())
                 .build();
     }
 
@@ -41,6 +43,8 @@ public final class StudentFactory {
                 .email(studentDto.getEmail())
                 .gender(studentDto.getGender())
                 .password(studentDto.getPassword())
+                .phone(studentDto.getPhone())
+                .enrollmentDate(studentDto.getEnrollmentDate())
                 .build();
     }
 

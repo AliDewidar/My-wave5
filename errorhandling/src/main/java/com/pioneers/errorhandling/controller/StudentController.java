@@ -6,6 +6,7 @@ import com.pioneers.errorhandling.model.dto.SignupDto;
 import com.pioneers.errorhandling.model.dto.StudentDto;
 import com.pioneers.errorhandling.model.entity.Student;
 import com.pioneers.errorhandling.service.StudentService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,7 +28,7 @@ public class StudentController {
     }
 
     @PostMapping("save")
-    public void saveStudentApi(@RequestBody StudentDto studentDto) {
+    public void saveStudentApi(@Valid @RequestBody StudentDto studentDto) {
         studentService.save(studentDto);
     }
 
@@ -43,7 +44,7 @@ public class StudentController {
     }
 
     @PutMapping("update")
-    public Student updateStudentApi(@RequestParam String id, @RequestBody StudentDto newStudentDto) {
+    public Student updateStudentApi(@Valid @RequestParam String id, @RequestBody StudentDto newStudentDto) {
         return studentService.update(id, newStudentDto);
     }
 
