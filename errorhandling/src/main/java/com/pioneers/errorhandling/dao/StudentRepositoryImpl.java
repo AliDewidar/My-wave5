@@ -28,8 +28,8 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
-    public Student findById(final String id) {
-        return students.get(id);
+    public Optional<Student> findById(final String id) {
+        return Optional.ofNullable(students.get(id));
     }
 
     @Override
@@ -38,8 +38,8 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
-    public void removeById(final String id) {
-        students.remove(id);
+    public Optional<Student> removeById(final String id) {
+        return Optional.ofNullable(students.remove(id));
     }
 
     @Override

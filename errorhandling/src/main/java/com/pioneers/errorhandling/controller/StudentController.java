@@ -40,7 +40,7 @@ public class StudentController {
 
     @GetMapping("findById/{id}")
     public StudentDto getStudentByIdApi(@PathVariable String id) {
-        return studentService.findById(id);
+            return studentService.findById(id);
     }
 
     @PutMapping("update")

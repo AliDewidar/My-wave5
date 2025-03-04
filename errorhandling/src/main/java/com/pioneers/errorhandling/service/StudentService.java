@@ -18,7 +18,7 @@ public interface StudentService {
 
     Student update(String id, StudentDto newStudentDto);
 
-    void removeById(String id);
+    StudentDto removeById(String id);
 
     StudentDto findFirst();
 

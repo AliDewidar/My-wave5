@@ -1,6 +1,7 @@
 package com.pioneers.errorhandling.service;
 
 import com.pioneers.errorhandling.dao.StudentRepository;
+import com.pioneers.errorhandling.error.StudentNotFoundException;
 import com.pioneers.errorhandling.model.dto.LoginDto;
 import com.pioneers.errorhandling.model.dto.SignupDto;
 import com.pioneers.errorhandling.model.dto.StudentDto;
@@ -54,7 +55,9 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDto findById(final String id) {
-        Student foundStudent = studentRepository.findById(id);
+        Student foundStudent = studentRepository.findById(id)
+                .orElseThrow(()
+                -> new StudentNotFoundException("Student with id: [" + id + "] is not found in the database"));
 
         StudentDto studentDto = toStudentDto(foundStudent);
 
@@ -65,9 +68,12 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public Student update(final String id, final StudentDto newStudentDto) {
-        String oldStudentName = studentRepository.findById(id).getFullName();
+        String oldStudentName = studentRepository.findById(id)
+                .orElseThrow(()
+                        -> new StudentNotFoundException("Student with id: [" + id + "] is not found in the database"))
+                .getFullName();
 
-        Student foundStudent = studentRepository.findById(id);
+        Student foundStudent = studentRepository.findById(id).orElseThrow();
         foundStudent = updateStudent(newStudentDto, foundStudent);
 
         studentRepository.upsert(foundStudent);
@@ -78,9 +84,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void removeById(final String id) {
-        studentRepository.removeById(id);
+    public StudentDto removeById(final String id) {
+        Student removedStudent = studentRepository.removeById(id).orElseThrow(()
+                -> new StudentNotFoundException("Student with id: [" + id + "] is not found in the database"));
+
         log.debug("Student removed from the db with id: [{}]", id);
+        return toStudentDto(removedStudent);
     }
 
     @Override

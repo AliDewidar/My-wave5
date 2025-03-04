@@ -3,6 +3,7 @@ package com.pioneers.errorhandling.util.factory;
 import com.pioneers.errorhandling.model.dto.SignupDto;
 import com.pioneers.errorhandling.model.dto.StudentDto;
 import com.pioneers.errorhandling.model.entity.Student;
+import lombok.NonNull;
 
 import static com.pioneers.errorhandling.util.Utils.createRandomId;
 import static com.pioneers.errorhandling.util.factory.NamingUtils.*;
@@ -13,7 +14,7 @@ public final class StudentFactory {
         throw new IllegalStateException("StudentFactory Utility class");
     }
 
-    public static StudentDto toStudentDto(Student student) {
+    public static StudentDto toStudentDto(@NonNull Student student) {
         //without builder
 //        return new StudentDto(student.getName(), student.getAge(), student.getEmail(), student.getGender(), student.getPassword());
 
@@ -31,7 +32,7 @@ public final class StudentFactory {
     }
 
 
-    public static Student toStudent(StudentDto studentDto) {
+    public static Student toStudent(@NonNull StudentDto studentDto) {
         String id = createRandomId();
 
 //        return new Student(id, studentDto.getName(), studentDto.getAge(), studentDto.getEmail(), studentDto.getGender(), studentDto.getPassword());
@@ -48,7 +49,7 @@ public final class StudentFactory {
                 .build();
     }
 
-    public static Student toStudent(SignupDto signupDto, boolean isloggedIn) {
+    public static Student toStudent(@NonNull SignupDto signupDto, boolean isloggedIn) {
 //        String id = createRandomId();
 
 //        return new Student(id, signupDto.getName(), signupDto.getAge(), signupDto.getEmail(), signupDto.getGender(), signupDto.getPassword());
@@ -63,7 +64,7 @@ public final class StudentFactory {
                 .build();
     }
 
-    public static Student updateStudent(StudentDto newStudentDto, Student foundStudent) {
+    public static Student updateStudent(@NonNull StudentDto newStudentDto, @NonNull Student foundStudent) {
 
         /*return new Student(foundStudent.getId(), newStudentDto.getName(), newStudentDto.getAge(),
                 newStudentDto.getEmail(), newStudentDto.getGender(), newStudentDto.getPassword());*/

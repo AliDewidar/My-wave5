@@ -10,11 +10,11 @@ public interface StudentRepository {
 
     Collection<Student> findAll();
 
-    Student findById(String id);
+    Optional<Student> findById(String id);
 
     void upsert(Student student);
 
-    void removeById(String id);
+    Optional<Student> removeById(String id);
 
     Student findFirst();
 
