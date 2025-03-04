@@ -3,7 +3,7 @@ package com.pioneers.service.util.pattern.delegation;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-@Component("dog")
+@Component("dog") // rename this bean from DogStrategy to dog
 public class DogStrategy implements Animal {
     @Override
     public boolean isBird() {

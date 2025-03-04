@@ -2,7 +2,7 @@ package com.pioneers.service.util.pattern.delegation;
 
 import org.springframework.stereotype.Component;
 
-@Component("lion")
+@Component("lion") // rename this bean from LionStrategy to lion
 public class LionStrategy implements Animal {
     @Override
     public boolean isBird() {

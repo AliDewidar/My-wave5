@@ -4,7 +4,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Slf4j
-@Component("camel")
+@Component("camel") // rename this bean from CamelStrategy to camel
 public class CamelStrategy implements Animal {
     @Override
     public boolean isBird() {

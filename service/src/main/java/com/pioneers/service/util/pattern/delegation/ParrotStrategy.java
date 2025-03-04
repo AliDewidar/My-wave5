@@ -4,7 +4,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
 @Lazy
-@Component
+@Component("parrot") // rename this bean from ParrotStrategy to parrot)
 public class ParrotStrategy implements Bird {
     @Override
     public boolean isBird() {

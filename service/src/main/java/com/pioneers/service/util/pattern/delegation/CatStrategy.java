@@ -1,10 +1,8 @@
 package com.pioneers.service.util.pattern.delegation;
 
-import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Component;
 
-
-@Component("cat")
+@Component("cat") // rename this bean from CatStrategy to cat
 public class CatStrategy implements Animal {
     @Override
     public boolean isBird() {
