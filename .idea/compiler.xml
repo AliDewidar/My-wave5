@@ -8,6 +8,7 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="spring" />
+        <module name="functional-programming" />
         <module name="service" />
         <module name="errorhandling" />
         <module name="MySecondTask" />
@@ -15,6 +16,7 @@
         <module name="datastructures" />
         <module name="MySecondTaskE3" />
         <module name="MySecondTaskE4 (1)" />
+        <module name="serviceV2" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
@@ -31,9 +33,11 @@
       <module name="MySecondTaskE4 (1)" options="-parameters" />
       <module name="datastructures" options="-parameters" />
       <module name="errorhandling" options="-parameters" />
+      <module name="functional-programming" options="-parameters" />
       <module name="mytask" options="-parameters" />
       <module name="service" options="-parameters" />
       <module name="serviceAuth" options="-parameters" />
+      <module name="serviceV2" options="-parameters" />
       <module name="spring" options="-parameters" />
       <module name="taskTwo" options="-parameters" />
     </option>

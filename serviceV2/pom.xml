@@ -9,11 +9,15 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>service</artifactId>
+    <artifactId>serviceV2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>service</name>
-    <description>service</description>
+    <description>
+        this project is version two of service , I added some features such separate database into class ,
+        add firstname , lastname in dto , add validation in dto , add validation in controller and make a
+        custom exception handler.
+    </description>
 
     <packaging>war</packaging>
 
