@@ -1,20 +1,15 @@
 package com.pioneers.serviceV2.controller;
 
-import com.pioneers.serviceV2.model.dto.LoginDto;
-import com.pioneers.serviceV2.model.dto.LogoutDto;
-import com.pioneers.serviceV2.model.dto.SignupDto;
 import com.pioneers.serviceV2.model.dto.StudentDto;
 import com.pioneers.serviceV2.model.entity.Student;
 import com.pioneers.serviceV2.service.student.StudentService;
+import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-// TODO: Create Three APIs to implements signup, login, logout for student.
-//  the logged-in student can hit all APIs except save API. When he log-out, he can hit non of the below APIs.
-//  Consider the SOLID principles and clean architecture that we explained.
 @Slf4j
 @RestController
 @RequestMapping("/student")
@@ -30,7 +25,7 @@ public class StudentController {
     }
 
     @PostMapping("save")
-    public void saveStudentApi(@RequestBody StudentDto studentDto) {
+    public void saveStudentApi(@Valid @RequestBody StudentDto studentDto) {
         studentService.save(studentDto);
     }
 
@@ -46,7 +41,7 @@ public class StudentController {
     }
 
     @PutMapping("update")
-    public Student updateStudentApi(@RequestParam String id, @RequestBody StudentDto newStudentDto) {
+    public Student updateStudentApi(@Valid @RequestParam String id, @RequestBody StudentDto newStudentDto) {
         return studentService.update(id, newStudentDto);
     }
 
@@ -60,18 +55,8 @@ public class StudentController {
         return studentService.findFirst();
     }
 
-    @PostMapping("/signup")
-    public void signup(@RequestBody SignupDto signupDto) {
-        studentService.signup(signupDto);
-    }
-
-    @PostMapping("/login")
-    public void login(@RequestBody LoginDto loginDto) {
-        studentService.login(loginDto);
-    }
-
-    @PostMapping("/logout")
-    public void logout(@RequestBody LogoutDto logoutDto) {
-        studentService.logout(logoutDto.getStudentId());
+    @GetMapping("findAllByFirstName")
+    public List<StudentDto> getFirstNameApi(@RequestParam(value = "firstname") String firstName) {
+        return studentService.findAllByFirstName(firstName);
     }
 }

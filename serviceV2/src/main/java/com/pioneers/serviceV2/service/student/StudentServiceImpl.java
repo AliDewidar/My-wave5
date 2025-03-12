@@ -1,11 +1,13 @@
 package com.pioneers.serviceV2.service.student;
 
 import com.pioneers.serviceV2.dao.student.StudentRepository;
+import com.pioneers.serviceV2.error.StudentNotFoundException;
 import com.pioneers.serviceV2.model.dto.LoginDto;
 import com.pioneers.serviceV2.model.dto.SignupDto;
 import com.pioneers.serviceV2.model.dto.StudentDto;
 import com.pioneers.serviceV2.model.entity.Student;
 import com.pioneers.serviceV2.util.factory.StudentFactory;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
@@ -14,6 +16,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 import static com.pioneers.serviceV2.util.ValidationClass.*;
+import static com.pioneers.serviceV2.util.factory.NamingUtils.buildFullName;
 import static com.pioneers.serviceV2.util.factory.StudentFactory.*;
 
 @Slf4j
@@ -31,14 +34,14 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void save(StudentDto studentDto) {
-        if (studentDto != null && isAgeMatched(studentDto.getAge()) && isMale(studentDto.getGender())) {
+    public void save(@NonNull StudentDto studentDto) {
             Student student = toStudent(studentDto);
 
             studentRepository.upsert(student);
 
-            log.debug("Student saved into the db with id: [{}] and name: [{}]", student.getId(), studentDto.getName());
-        }
+            log.debug("Student saved into the db with id: [{}] and name: [{}]", student.getId(),
+                    buildFullName(studentDto.getFirstName(), studentDto.getSecondName()));
+
     }
 
     @Override
@@ -51,33 +54,40 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDto findById(final String id) {
-        Student foundStudent = studentRepository.findById(id);
+        Student foundStudent = studentRepository.findById(id)
+                .orElseThrow(()-> new StudentNotFoundException("Student not found with id: " + id));
 
         StudentDto studentDto = toStudentDto(foundStudent);
 
-        log.debug("Student found in the db with id: [{}] and name: [{}]", id, studentDto.getName());
+        log.debug("Student found in the db with id: [{}] and name: [{}]", id,
+                buildFullName(studentDto.getFirstName(),studentDto.getSecondName()));
 
         return studentDto;
     }
 
     @Override
     public Student update(final String id, final StudentDto newStudentDto) {
-        String oldStudentName = studentRepository.findById(id).getName();
+        String oldStudentName = studentRepository.findById(id)
+                .orElseThrow(()-> new StudentNotFoundException("Student not found with id: " + id))
+                .getFullName();
 
-        Student foundStudent = studentRepository.findById(id);
+        Student foundStudent = studentRepository.findById(id)
+                .orElseThrow(()-> new StudentNotFoundException("Student not found with id: " + id));
         foundStudent = updateStudent(newStudentDto, foundStudent);
 
         studentRepository.upsert(foundStudent);
 
         log.debug("Student updated in the db with id: [{}], old name: [{}] and new name: [{}]",
-                id, oldStudentName, newStudentDto.getName());
+                id, oldStudentName, buildFullName(newStudentDto.getFirstName(), newStudentDto.getSecondName()));
         return foundStudent;
     }
 
     @Override
     public void removeById(final String id) {
-        studentRepository.removeById(id);
-        log.debug("Student removed from the db with id: [{}]", id);
+        studentRepository.findById(id).ifPresent(student -> {
+            studentRepository.removeById(id);
+            log.debug("Student removed from the db with id: [{}]", id);
+        });
     }
 
     @Override
@@ -85,53 +95,17 @@ public class StudentServiceImpl implements StudentService {
         Student firstStudent = studentRepository.findFirst();
         StudentDto studentDto = toStudentDto(firstStudent);
 
-        log.debug("Student found in the db with id: [{}] and name: [{}]", firstStudent.getId(), studentDto.getName());
+        log.debug("Student found in the db with id: [{}] and name: [{}]", firstStudent.getId(),
+                buildFullName(studentDto.getFirstName(), studentDto.getSecondName()));
 
         return studentDto;
     }
 
     @Override
-    public void signup(SignupDto signupDto) {
-        // create Optional<Student> in findByEmail to handle null error
-        studentRepository.findByEmail(signupDto.getEmail())
-                .ifPresent(student -> {
-                    Student newstudent = toStudent(signupDto, false);
-                    studentRepository.upsert(newstudent);
-                    log.debug("Student signed up in the db with id: [{}] ", student.getId());
-                });
-        /*replaced this with method toStudent() in StudentFactory ✅
-        Student student = new Student(
-                studentId,
-                signupDto.getName(),
-                signupDto.getAge(),
-                signupDto.getEmail(),
-                signupDto.getGender(),
-                signupDto.getPassword(),
-                false
-        );*/
+    public List<StudentDto> findAllByFirstName(String firstName) {
+        return studentRepository.findAllByFirstName(firstName)
+                .stream()
+                .map(StudentFactory::toStudentDto)
+                .toList();
     }
-
-    @Override
-    public void login(LoginDto loginDto) {
-        studentRepository.findByEmail(loginDto.getEmail())
-                .ifPresent(student -> {
-                    if (isEmailMatched(loginDto.getEmail(),student.getEmail()) &&
-                            isPasswordMatched(loginDto.getPassword(), student.getPassword())) {
-                        student.setLoggedIn(true);
-                        studentRepository.upsert(student);
-                        log.debug("Student logged in successfully");
-                    }
-                });
-    }
-
-    @Override
-    public void logout(String email) {
-        studentRepository.findByEmail(email)
-                .ifPresent(student -> {
-                    student.setLoggedIn(false);
-                    studentRepository.upsert(student);
-                    log.debug("Student logged out successfully");
-                });
-    }
-
 }

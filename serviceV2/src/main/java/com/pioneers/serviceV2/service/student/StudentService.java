@@ -21,10 +21,5 @@ public interface StudentService {
 
     StudentDto findFirst();
 
-    void signup(SignupDto signupDto);
-
-    void login(LoginDto loginDto);
-
-    void logout(String studentId);
-
+    List<StudentDto> findAllByFirstName(String firstName);
 }
