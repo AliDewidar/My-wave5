@@ -50,7 +50,11 @@ DROP TABLE students;]]></console>
     <connection id="99958dbe-71fd-46c3-baae-c53f108571a1" />
   </component>
   <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="99958dbe-71fd-46c3-baae-c53f108571a1" dataset="public.students" active-filter-id="" />
+    <filter-actions connection-id="99958dbe-71fd-46c3-baae-c53f108571a1" dataset="public.students" active-filter-id="81d8b5e8-bb86-4f7c-be95-9c71bb72a966">
+      <filter id="81d8b5e8-bb86-4f7c-be95-9c71bb72a966" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
+        <condition column="id" operator="=" value="" active="true" />
+      </filter>
+    </filter-actions>
   </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />

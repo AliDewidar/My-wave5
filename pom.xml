@@ -28,6 +28,7 @@
         <module>errorhandling</module>
         <module>functional-programming</module>
         <module>serviceV2</module>
+        <module>serviceV3</module>
     </modules>
 
     <properties>
