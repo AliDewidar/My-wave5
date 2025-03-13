@@ -37,7 +37,7 @@ public class StudentServiceImpl implements StudentService {
 
             studentRepository.upsert(student);
 
-            log.debug("Student saved into the db with id: [{}] and name: [{}]", student.getId(), studentDto.getName());
+            log.debug("Student saved into the db with id: [{}] and name: [{}]", student.getId(), studentDto.getFirstName());
         }
     }
 
@@ -55,7 +55,7 @@ public class StudentServiceImpl implements StudentService {
 
         StudentDto studentDto = toStudentDto(foundStudent);
 
-        log.debug("Student found in the db with id: [{}] and name: [{}]", id, studentDto.getName());
+        log.debug("Student found in the db with id: [{}] and name: [{}]", id, studentDto.getFirstName());
 
         return studentDto;
     }
@@ -70,7 +70,7 @@ public class StudentServiceImpl implements StudentService {
         studentRepository.upsert(foundStudent);
 
         log.debug("Student updated in the db with id: [{}], old name: [{}] and new name: [{}]",
-                id, oldStudentName, newStudentDto.getName());
+                id, oldStudentName, newStudentDto.getFirstName());
         return foundStudent;
     }
 
@@ -85,7 +85,7 @@ public class StudentServiceImpl implements StudentService {
         Student firstStudent = studentRepository.findFirst();
         StudentDto studentDto = toStudentDto(firstStudent);
 
-        log.debug("Student found in the db with id: [{}] and name: [{}]", firstStudent.getId(), studentDto.getName());
+        log.debug("Student found in the db with id: [{}] and name: [{}]", firstStudent.getId(), studentDto.getFirstName());
 
         return studentDto;
     }

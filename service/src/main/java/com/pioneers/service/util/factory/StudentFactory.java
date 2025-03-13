@@ -18,7 +18,7 @@ public final class StudentFactory {
 
         //with builder
         return StudentDto.builder()
-                .name(student.getName())
+                .firstName(student.getName())
                 .age(student.getAge())
                 .email(student.getEmail())
                 .gender(student.getGender())
@@ -33,7 +33,7 @@ public final class StudentFactory {
 
         return Student.builder()
                 .id(id)
-                .name(studentDto.getName())
+                .name(studentDto.getFirstName())
                 .age(studentDto.getAge())
                 .email(studentDto.getEmail())
                 .gender(studentDto.getGender())
@@ -63,7 +63,7 @@ public final class StudentFactory {
 
         return Student.builder()
                 .id(foundStudent.getId())
-                .name(newStudentDto.getName())
+                .name(newStudentDto.getFirstName())
                 .age(newStudentDto.getAge())
                 .email(newStudentDto.getEmail())
                 .gender(newStudentDto.getGender())
