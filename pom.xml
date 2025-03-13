@@ -29,6 +29,7 @@
         <module>functional-programming</module>
         <module>serviceV2</module>
         <module>serviceV3</module>
+        <module>serviceV4</module>
     </modules>
 
     <properties>
