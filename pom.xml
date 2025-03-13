@@ -12,7 +12,7 @@
     </parent>
 
     <groupId>com.pioneers</groupId>
-    <artifactId>wave5</artifactId>
+    <artifactId>My-wave5</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <packaging>pom</packaging>
