@@ -91,6 +91,12 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
+    public void deleteAll() {
+        studentRepository.deleteAll();
+        log.debug("All students removed from the db");
+    }
+
+    @Override
     public StudentDto findFirst() {
         Student firstStudent = studentRepository.findFirst();
         StudentDto studentDto = toStudentDto(firstStudent);

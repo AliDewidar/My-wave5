@@ -16,6 +16,8 @@ public interface StudentRepository {
 
     void removeById(String id);
 
+    void deleteAll();
+
     Student findFirst();
 
     Optional<Student> findByEmail(String email);

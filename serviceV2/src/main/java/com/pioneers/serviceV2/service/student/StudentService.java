@@ -19,6 +19,8 @@ public interface StudentService {
 
     void removeById(String id);
 
+    void deleteAll();
+
     StudentDto findFirst();
 
     List<StudentDto> findAllByFirstName(String firstName);

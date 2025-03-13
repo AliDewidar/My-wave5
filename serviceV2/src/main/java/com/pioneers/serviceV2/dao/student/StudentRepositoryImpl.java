@@ -45,6 +45,11 @@ public class StudentRepositoryImpl implements StudentRepository {
     }
 
     @Override
+    public void deleteAll() {
+        studentsDb.getStudents().clear();
+    }
+
+    @Override
     public Student findFirst() {
         String firstId = studentsDb.getStudents().keySet().stream().findFirst().orElse("");
         return studentsDb.getStudents().get(firstId);

@@ -50,6 +50,11 @@ public class StudentController {
         studentService.removeById(id);
     }
 
+    @DeleteMapping("deleteAll")
+    public void deleteAllStudentApi() {
+        studentService.deleteAll();
+    }
+
     @GetMapping("findFirst")
     public StudentDto getFirstStudentApi() {
         return studentService.findFirst();
