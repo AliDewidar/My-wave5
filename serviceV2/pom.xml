@@ -14,7 +14,7 @@
 
     <name>service</name>
     <description>
-        this project is version two of service , I added some features such separate database into class ,
+        this project is version two of service , I added some features such separate database(Map) into class ,
         add firstname , lastname in dto , add validation in dto , add validation in controller and make a
         custom exception handler.
     </description>
