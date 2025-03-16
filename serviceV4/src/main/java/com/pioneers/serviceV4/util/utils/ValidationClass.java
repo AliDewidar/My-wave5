@@ -1,4 +1,4 @@
-package com.pioneers.serviceV4.util;
+package com.pioneers.serviceV4.util.utils;
 
 public final class ValidationClass {
 

@@ -1,6 +1,7 @@
 package com.pioneers.serviceV4.service.student;
 
 import com.pioneers.serviceV4.model.dto.StudentDto;
+import com.pioneers.serviceV4.model.dto.StudentResponseDto;
 import com.pioneers.serviceV4.model.entity.Student;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public interface StudentService {
 
     StudentDto findById(UUID id);
 
-    Student update(UUID id, StudentDto newStudentDto);
+    StudentResponseDto update(UUID id, StudentDto newStudentDto);
 
     void removeById(UUID id);
 

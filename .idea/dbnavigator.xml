@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DBNavigator.Project.CodeGeneratorManager">
+    <generator-states>
+      <generator-state category="JAVA" />
+    </generator-states>
+  </component>
   <component name="DBNavigator.Project.DDLFileAttachmentManager">
     <mappings />
     <preferences />
@@ -35,29 +40,45 @@
     gender VARCHAR(255) NOT NULL
 )
 
-DROP TABLE students;]]></console>
+DROP TABLE students;
+
+CREATE TABLE IF NOT EXISTS address (
+    id UUID PRIMARY KEY,
+    continent VARCHAR(255) NOT NULL,
+    country VARCHAR(255) NOT NULL,
+    city VARCHAR(255) NOT NULL,
+    street VARCHAR(255) NOT NULL,
+    building_number VARCHAR(255) NOT NULL,
+    floor INT NOT NULL,
+    apartment_number INT NOT NULL
+)
+
+DROP TABLE address;
+
+ALTER TABLE addresses 
+RENAME COLUMN buliding_number TO building_number;
+
+
+ALTER TABLE students
+ADD COLUMN address_id UUID,
+ADD CONSTRAINT fk_students_address
+FOREIGN KEY (address_id) REFERENCES address(id);]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseEditorStateManager">
     <last-used-providers />
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files>
-      <object connection-id="99958dbe-71fd-46c3-baae-c53f108571a1" object-ref="consoles/mypostgres" />
-    </open-files>
+    <open-files />
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="99958dbe-71fd-46c3-baae-c53f108571a1" />
   </component>
-  <component name="DBNavigator.Project.DatasetFilterManager">
-    <filter-actions connection-id="99958dbe-71fd-46c3-baae-c53f108571a1" dataset="public.students" active-filter-id="81d8b5e8-bb86-4f7c-be95-9c71bb72a966">
-      <filter id="81d8b5e8-bb86-4f7c-be95-9c71bb72a966" name="Filter" temporary="false" custom-name="false" type="basic" join-type="AND">
-        <condition column="id" operator="=" value="" active="true" />
-      </filter>
-    </filter-actions>
-  </component>
   <component name="DBNavigator.Project.ExecutionManager">
     <retain-sticky-names value="false" />
+  </component>
+  <component name="DBNavigator.Project.FileConnectionMappingManager">
+    <mapping file-url="file://$PROJECT_DIR$/serviceV4/src/main/resources/db/schema.sql" connection-id="99958dbe-71fd-46c3-baae-c53f108571a1" session-id="MAIN" current-schema="public" />
   </component>
   <component name="DBNavigator.Project.MethodExecutionManager">
     <method-browser />
@@ -100,7 +121,7 @@ DROP TABLE students;]]></console>
           <session-user value="postgres" />
         </database>
         <properties>
-          <auto-commit value="false" />
+          <auto-commit value="true" />
         </properties>
         <ssh-settings>
           <active value="false" />

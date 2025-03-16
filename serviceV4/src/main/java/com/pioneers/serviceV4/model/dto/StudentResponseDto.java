@@ -3,14 +3,16 @@ package com.pioneers.serviceV4.model.dto;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
-@Builder
 @Data
+@Builder
+@NoArgsConstructor
 @AllArgsConstructor
-public class SignupDto {
-    private String name;
+public class StudentResponseDto {
+    private String fullName;
     private int age;
     private String email;
     private String gender;
-    private String password;
+    private AddressResponseDto address;
 }

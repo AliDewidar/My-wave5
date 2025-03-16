@@ -14,7 +14,8 @@
 
     <name>service</name>
     <description>
-        this project is version four of service , add JPA interface .
+        this project is version four of service , add JPA interface instead of repositoryImpl ,
+        and maintain update mapper in StudentMapper
     </description>
 
     <packaging>war</packaging>

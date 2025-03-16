@@ -1,4 +1,4 @@
-package com.pioneers.serviceV4.util.factory;
+package com.pioneers.serviceV4.util.utils;
 
 public final class NamingUtils {
     private NamingUtils() {

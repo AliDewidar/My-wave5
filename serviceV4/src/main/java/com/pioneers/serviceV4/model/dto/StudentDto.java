@@ -4,6 +4,7 @@ import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.hibernate.validator.constraints.UniqueElements;
 
 @Builder
 @AllArgsConstructor
@@ -29,4 +30,6 @@ public class StudentDto {
     @NotBlank(message = "Email is required and cannot be empty")
     @Email(message = "Invalid email format")
     private String email;
+
+    private AddressDto address;
 }

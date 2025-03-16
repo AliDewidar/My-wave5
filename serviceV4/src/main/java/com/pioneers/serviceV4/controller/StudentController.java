@@ -1,6 +1,7 @@
 package com.pioneers.serviceV4.controller;
 
 import com.pioneers.serviceV4.model.dto.StudentDto;
+import com.pioneers.serviceV4.model.dto.StudentResponseDto;
 import com.pioneers.serviceV4.model.entity.Student;
 import com.pioneers.serviceV4.service.student.StudentService;
 import jakarta.validation.Valid;
@@ -47,7 +48,7 @@ public class StudentController {
     }
 
     @PutMapping("update")
-    public Student updateStudentApi(@Valid @RequestParam UUID id, @RequestBody StudentDto newStudentDto) {
+    public StudentResponseDto updateStudentApi(@Valid @RequestParam UUID id, @RequestBody StudentDto newStudentDto) {
         return studentService.update(id, newStudentDto);
     }
 
