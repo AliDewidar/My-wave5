@@ -9,7 +9,7 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>serviceV3</artifactId>
+    <artifactId>serviceV4</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <name>service</name>
