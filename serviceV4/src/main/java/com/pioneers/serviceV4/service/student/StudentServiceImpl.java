@@ -3,9 +3,7 @@ package com.pioneers.serviceV4.service.student;
 import com.pioneers.serviceV4.dao.student.StudentRepository;
 import com.pioneers.serviceV4.error.StudentNotFoundException;
 import com.pioneers.serviceV4.model.dto.StudentDto;
-import com.pioneers.serviceV4.model.dto.StudentResponseDto;
 import com.pioneers.serviceV4.model.entity.Student;
-import com.pioneers.serviceV4.util.mapper.AddressMapper;
 import com.pioneers.serviceV4.util.mapper.StudentMapper;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -73,13 +71,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponseDto update(final UUID id, final StudentDto newStudentDto) {
-
-        //we have to steps to update the student and return the response dto
-        /* 1. find the student by id, and it returns the student(Student) and update it with the first mapper
-        *  and save the updated student
-        *  2. second mapper to convert the saved student to response dto */
-        //الفكره هنا انا ببعت Dto وهيتحفظ في الداتا بيز model وعايز ارجع response dto
+    public StudentDto update(final UUID id, final StudentDto newStudentDto) {
 
         String oldStudentName = studentRepository.findById(id)
                 .orElseThrow(()-> new StudentNotFoundException("Student not found with id: " + id))
@@ -89,12 +81,11 @@ public class StudentServiceImpl implements StudentService {
                 .orElseThrow(()-> new StudentNotFoundException("Student not found with id: " + id));
         foundStudent = updateStudent(newStudentDto, foundStudent);
 
-        Student savedStudent = studentRepository.save(foundStudent);
-        StudentResponseDto responseDto = StudentMapper.toStudentResponseDto(savedStudent);
+        studentRepository.save(foundStudent);
 
         log.debug("Student updated in the db with id: [{}], old name: [{}] and new name: [{}]",
                 id, oldStudentName, buildFullName(newStudentDto.getFirstName(), newStudentDto.getSecondName()));
-        return responseDto;
+        return toStudentDto(foundStudent);
     }
 
 

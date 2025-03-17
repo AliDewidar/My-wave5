@@ -1,14 +1,11 @@
 package com.pioneers.serviceV4.util.mapper;
 
 import com.pioneers.serviceV4.model.dto.AddressDto;
-import com.pioneers.serviceV4.model.dto.AddressResponseDto;
 import com.pioneers.serviceV4.model.dto.StudentDto;
-import com.pioneers.serviceV4.model.dto.StudentResponseDto;
 import com.pioneers.serviceV4.model.entity.Address;
 import com.pioneers.serviceV4.model.entity.Student;
 import lombok.NonNull;
 import lombok.experimental.UtilityClass;
-import org.hibernate.dialect.unique.CreateTableUniqueDelegate;
 
 import java.util.Optional;
 
@@ -67,21 +64,4 @@ public class StudentMapper {
                 });
         return studentBuilder.build();
     }
-
-    public StudentResponseDto toStudentResponseDto(@NonNull Student student) {
-
-        StudentResponseDto.StudentResponseDtoBuilder studentResponseDtoBuilder = StudentResponseDto.builder()
-                .fullName(student.getFullName())
-                .age(student.getAge())
-                .email(student.getEmail())
-                .gender(student.getGender());
-
-        Optional.ofNullable(student.getAddress())
-                .ifPresent(address -> {
-                    AddressResponseDto mappedAddressDto = AddressMapper.toAddressResponseDto(address);
-                    studentResponseDtoBuilder.address(mappedAddressDto);
-                });
-        return studentResponseDtoBuilder.build();
-    }
-
 }
