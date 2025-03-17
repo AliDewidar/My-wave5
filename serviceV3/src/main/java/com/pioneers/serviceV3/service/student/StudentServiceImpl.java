@@ -64,20 +64,19 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student update(final UUID id, final StudentDto newStudentDto) {
+    public StudentDto update(final UUID id, final StudentDto newStudentDto) {
         String oldStudentName = studentRepository.findById(id)
                 .orElseThrow(()-> new StudentNotFoundException("Student not found with id: " + id))
                 .getFullName();
 
         Student foundStudent = studentRepository.findById(id)
                 .orElseThrow(()-> new StudentNotFoundException("Student not found with id: " + id));
-        foundStudent = updateStudent(newStudentDto, foundStudent);
 
         studentRepository.update(foundStudent);
 
         log.debug("Student updated in the db with id: [{}], old name: [{}] and new name: [{}]",
                 id, oldStudentName, buildFullName(newStudentDto.getFirstName(), newStudentDto.getSecondName()));
-        return foundStudent;
+        return toStudentDto(foundStudent);
     }
 
     @Override

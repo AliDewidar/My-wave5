@@ -42,7 +42,7 @@ public class StudentController {
     }
 
     @PutMapping("update")
-    public Student updateStudentApi(@Valid @RequestParam UUID id, @RequestBody StudentDto newStudentDto) {
+    public StudentDto updateStudentApi(@Valid @RequestParam UUID id, @RequestBody StudentDto newStudentDto) {
         return studentService.update(id, newStudentDto);
     }
 
