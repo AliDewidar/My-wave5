@@ -15,7 +15,7 @@
     <name>service</name>
     <description>
         this project is version five of service , I added a Liquibase(this is a database migration tool)
-        instead of creating a database manually
+        instead of sql queries.
     </description>
 
     <packaging>war</packaging>
