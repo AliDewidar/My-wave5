@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd">
+
+    <changeSet id="0004-alter-building-number-column" author="ali">
+        <renameColumn tableName="addresses"
+                      oldColumnName="building_num"
+                      newColumnName="building_number"/>
+        <rollback>
+            <renameColumn tableName="addresses"
+                          oldColumnName="building_number"
+                          newColumnName="building_num"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="0004-alter-apartment-number-column" author="ali">
+        <renameColumn tableName="addresses"
+                      oldColumnName="apartment_num"
+                      newColumnName="apartment_number"/>
+        <rollback>
+            <renameColumn tableName="addresses"
+                          oldColumnName="apartment_number"
+                          newColumnName="apartment_num"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

@@ -15,6 +15,7 @@
         <module name="functional-programming" />
         <module name="service" />
         <module name="errorhandling" />
+        <module name="serviceV5" />
         <module name="MySecondTask" />
         <module name="datastructures" />
         <module name="serviceV2" />
@@ -44,6 +45,7 @@
       <module name="serviceV2" options="-parameters" />
       <module name="serviceV3" options="-parameters" />
       <module name="serviceV4" options="-parameters" />
+      <module name="serviceV5" options="-parameters" />
       <module name="spring" options="-parameters" />
       <module name="taskTwo" options="-parameters" />
     </option>

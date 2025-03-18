@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="Create_Addresses_Table_00000000002" author="ali">
+        <createTable tableName="addresses">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" primaryKeyName="pk_addresses_id" nullable="false"/>
+            </column>
+            <column name="continent" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street" type="VARCHAR(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="building_num" type="INT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="floor" type="INT">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <rollback>
+            <dropTable tableName="addresses"/>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="Link_Address_With_Students_00000000003" author="ali">
+        <addColumn tableName="students">
+            <column name="address_id" type="UUID"/>
+        </addColumn>
+
+        <addForeignKeyConstraint baseTableName="students" baseColumnNames="address_id"
+                                 constraintName="fk_students_address_id"
+                                 referencedTableName="addresses"
+                                 referencedColumnNames="id"/>
+
+        <rollback>
+            <dropColumn columnName="address_id" tableName="students"/>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

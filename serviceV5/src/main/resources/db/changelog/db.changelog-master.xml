@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <include file="db/changelog/0001-create_students_table.xml" relativeToChangelogFile="false" author="ali"/>
+    <include file="db/changelog/0002-create_addresses_table_and_link_with_students.xml" relativeToChangelogFile="false"
+             author="ali"/>
+    <include file="db/changelog/0003-add_columns_to_addresses_table.xml" relativeToChangelogFile="false" author="ali"/>
+    <include file="db/changelog/0004-alter_columns_in_addresses_table.xml" relativeToChangelogFile="false" author="ali"/>
+    <include file="db/changelog/0005-add_dummy_data.xml" relativeToChangelogFile="false" author="ali"/>
+</databaseChangeLog>

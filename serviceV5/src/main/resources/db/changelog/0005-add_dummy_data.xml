@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <!--you must add the address before the student because of the foreign key constraint in the student table-->
+    <changeSet id="1741388806461-1" author="ali">
+        <insert tableName="addresses">
+            <column name="id" value="7f305a67-5e27-4f00-a80e-347ad7f2c269"/>
+            <column name="continent" value="Africa"/>
+            <column name="country" value="Arab Republic of Egypt"/>
+            <column name="city" value="New Cairo"/>
+            <column name="street" value="Gamal Abdelnaser"/>
+            <column name="building_number" value="100"/>
+            <column name="floor" value="1"/>
+            <column name="apartment_number" value="5"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="addresses">
+                <where>id = '7f305a67-5e27-4f00-a80e-347ad7f2c269'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1741389463723-1" author="ali">
+        <insert tableName="students">
+            <column name="id" value="c739318d-ed1a-47a4-95d4-3b0f6bf9f435"/>
+            <column name="fullname" value="ali dewidar"/>
+            <column name="age" value="23"/>
+            <column name="email" value="ali.said@techpioneershub.com"/>
+            <column name="gender" value="M"/>
+            <column name="address_id" value="7f305a67-5e27-4f00-a80e-347ad7f2c269"/>
+        </insert>
+
+        <rollback>
+            <delete tableName="students">
+                <where>id = 'c739318d-ed1a-47a4-95d4-3b0f6bf9f435'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+    <changeSet id="1741465666930-1" author="abdelaziz">
+        <insert tableName="students">
+            <column name="id" value="c739318d-ed1a-47a4-95d4-3b0f6bf9f436"/>
+            <column name="fullname" value="Zoz Said"/>
+            <column name="age" value="24"/>
+            <column name="email" value="zoz.said@techpioneershub.com"/>
+            <column name="gender" value="M"/>
+            <column name="address_id" value="7f305a67-5e27-4f00-a80e-347ad7f2c269"/> <!--this student stay at same above address-->
+        </insert>
+
+        <rollback>
+            <delete tableName="students">
+                <where>id = 'c739318d-ed1a-47a4-95d4-3b0f6bf9f436'</where>
+            </delete>
+        </rollback>
+    </changeSet>
+
+</databaseChangeLog>

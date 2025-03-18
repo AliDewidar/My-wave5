@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="Add_apartment_num_Column_To_Addresses_00000000004" author="ali">
+        <addColumn tableName="addresses">
+            <column name="country" type="VARCHAR(100)"/>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="addresses" columnName="country"/>
+        </rollback>
+
+        <addColumn tableName="addresses">
+            <column name="apartment_num" type="INT"/>
+        </addColumn>
+
+        <rollback>
+            <dropColumn tableName="addresses" columnName="apartment_num"/>
+        </rollback>
+    </changeSet>
+</databaseChangeLog>
