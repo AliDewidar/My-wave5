@@ -1,28 +1,30 @@
 package com.pioneers.serviceV5.controller;
 
 import com.pioneers.serviceV5.model.dto.StudentDto;
+import com.pioneers.serviceV5.service.LiquibaseService;
 import com.pioneers.serviceV5.service.student.StudentService;
 import jakarta.validation.Valid;
+import liquibase.exception.LiquibaseException;
+import lombok.NonNull;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.sql.SQLException;
 import java.util.List;
 import java.util.UUID;
 
 @Slf4j
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/student")
 public class StudentController {
 
+    @NonNull
     private final StudentService studentService;
-
-    @Autowired
-    public StudentController(StudentService studentService) {
-        log.trace("Creating [{}] constructor!! (bean) with injecting studentService",
-                this.getClass().getSimpleName());
-        this.studentService = studentService;
-    }
+    @NonNull
+    private final LiquibaseService liquibaseService;
 
     @PostMapping("save")
     public void saveStudentApi(@Valid @RequestBody StudentDto studentDto) {
@@ -63,5 +65,10 @@ public class StudentController {
     @GetMapping("findFirst")
     public StudentDto getFirstStudentApi() {
         return studentService.findFirst();
+    }
+
+    @PutMapping("rollback/{rollbackCount}")
+    public void rollbackApi(@PathVariable int rollbackCount) throws SQLException, LiquibaseException {
+        liquibaseService.rollback(rollbackCount);
     }
 }
