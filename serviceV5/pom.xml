@@ -15,7 +15,7 @@
     <name>service</name>
     <description>
         this project is version five of service , I added a Liquibase(this is a database migration tool)
-        instead of sql queries.
+        instead of sql queries, and Add LiquibaseService for rollback functionality.
     </description>
 
     <packaging>war</packaging>
