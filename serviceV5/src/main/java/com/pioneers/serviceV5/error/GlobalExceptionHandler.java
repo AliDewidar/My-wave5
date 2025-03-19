@@ -1,6 +1,7 @@
 package com.pioneers.serviceV5.error;
 
 import com.pioneers.serviceV5.error.model.ErrorResponse;
+import liquibase.exception.LiquibaseException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -39,6 +40,13 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleNoSuchElementException(StudentNotFoundException e) {
         ErrorResponse errorResponse = new ErrorResponse(e.getCode(), e.getMessage() , e.getDetails());
         return new ResponseEntity<>(errorResponse, HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler(LiquibaseException.class)
+    public ResponseEntity<ErrorResponse> handleNoSuchElementException(LiquibaseException e) {
+        ErrorResponse errorResponse = new ErrorResponse(2000, e.getMessage(), e.getDetails());
+
+        return new ResponseEntity<>(errorResponse, HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
 }
