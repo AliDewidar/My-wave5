@@ -22,6 +22,15 @@
         <module name="serviceV3" />
         <module name="serviceV4" />
       </profile>
+      <profile name="Annotation profile for My-wave5" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/unknown/lombok-unknown.jar" />
+        </processorPath>
+        <module name="patterns" />
+      </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="mytask" target="21" />
@@ -40,6 +49,7 @@
       <module name="errorhandling" options="-parameters" />
       <module name="functional-programming" options="-parameters" />
       <module name="mytask" options="-parameters" />
+      <module name="patterns" options="-parameters" />
       <module name="service" options="-parameters" />
       <module name="serviceAuth" options="-parameters" />
       <module name="serviceV2" options="-parameters" />

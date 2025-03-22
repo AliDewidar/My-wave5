@@ -31,6 +31,7 @@
         <module>serviceV3</module>
         <module>serviceV4</module>
         <module>serviceV5</module>
+        <module>patterns</module>
     </modules>
 
     <properties>
